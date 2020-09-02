@@ -43,16 +43,25 @@
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'sexp t)))
+    (thing-cut-sexp)))
 
 ;;;###autoload
-(defun avy-thing-copy-sexp (kill-conditional)
+(defun avy-thing-copy-sexp (&optional yank-conditional)
   "Copy sexp at current point.
 With the universal argument, the text will also be killed."
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'sexp kill-conditional)))
+    (thing-copy-sexp nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-sexp ()
+  "Copy sexp at current point.
+With the universal argument, the text will also be killed."
+  (interactive)
+  (avy-thing-copy-sexp t))
 
 ;;;###autoload
 (defun avy-thing-replace-sexp ()
@@ -60,7 +69,7 @@ With the universal argument, the text will also be killed."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'sexp)))
+    (thing-replace-sexp)))
 
 ;;;###autoload
 (defun avy-thing-cut-email ()
@@ -68,16 +77,25 @@ With the universal argument, the text will also be killed."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'email t)))
+    (thing-cut-email)))
 
 ;;;###autoload
-(defun avy-thing-copy-email (kill-conditional)
+(defun avy-thing-copy-email (&optional yank-conditional)
   "Copy email at current point.
 With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'email kill-conditional)))
+    (thing-copy-email nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-email ()
+  "Copy email at current point.
+With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-email t))
 
 ;;;###autoload
 (defun avy-thing-replace-email ()
@@ -85,7 +103,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'email)))
+    (thing-replace-email)))
 
 ;;;###autoload
 (defun avy-thing-cut-filename ()
@@ -93,16 +111,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'filename t)))
+    (thing-cut-filename)))
 
 ;;;###autoload
-(defun avy-thing-copy-filename (kill-conditional)
+(defun avy-thing-copy-filename (&optional yank-conditional)
   "Copy filename at current point.
 With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'filename kill-conditional)))
+    (thing-copy-filename nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-filename ()
+  "Copy filename at current point.
+With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-filename t))
 
 ;;;###autoload
 (defun avy-thing-replace-filename ()
@@ -110,7 +137,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'filename)))
+    (thing-replace-filename)))
 
 ;;;###autoload
 (defun avy-thing-cut-url ()
@@ -118,16 +145,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'url t)))
+    (thing-cut-url)))
 
 ;;;###autoload
-(defun avy-thing-copy-url (kill-conditional)
+(defun avy-thing-copy-url (&optional yank-conditional)
   "Copy url at current point.
 With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'url kill-conditional)))
+    (thing-copy-url nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-url ()
+  "Copy url at current point.
+With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-url t))
 
 ;;;###autoload
 (defun avy-thing-replace-url ()
@@ -135,7 +171,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'url)))
+    (thing-replace-url)))
 
 ;;;###autoload
 (defun avy-thing-cut-word ()
@@ -143,16 +179,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'word t)))
+    (thing-cut-word)))
 
 ;;;###autoload
-(defun avy-thing-copy-word (kill-conditional)
+(defun avy-thing-copy-word (&optional yank-conditional)
   "Copy words at point.
 With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'word kill-conditional)))
+    (thing-copy-word nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-word ()
+  "Copy words at point.
+With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-word t))
 
 ;;;###autoload
 (defun avy-thing-replace-word ()
@@ -160,7 +205,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'word)))
+    (thing-replace-word)))
 
 ;;;###autoload
 (defun avy-thing-cut-symbol ()
@@ -168,16 +213,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'symbol t)))
+    (thing-cut-symbol)))
 
 ;;;###autoload
-(defun avy-thing-copy-symbol (kill-conditional)
+(defun avy-thing-copy-symbol (&optional yank-conditional)
   "Copy symbol around point.
  With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'symbol kill-conditional)))
+    (thing-copy-symbol nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-symbol ()
+  "Copy symbol around point.
+ With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-symbol t))
 
 ;;;###autoload
 (defun avy-thing-replace-symbol ()
@@ -185,7 +239,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'symbol)))
+    (thing-replace-symbol)))
 
 ;;;###autoload
 (defun avy-thing-cut-line ()
@@ -193,16 +247,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'line t)))
+    (thing-cut-line)))
 
 ;;;###autoload
-(defun avy-thing-copy-line (kill-conditional)
+(defun avy-thing-copy-line (&optional yank-conditional)
   "Copy current line into Kill-Ring without mark the line.
  With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'line kill-conditional)))
+    (thing-copy-line nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-line ()
+  "Copy current line into Kill-Ring without mark the line.
+ With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-copy-line t))
 
 ;;;###autoload
 (defun avy-thing-replace-line ()
@@ -210,16 +273,33 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'line)))
+    (thing-replace-line)))
 
 ;;;###autoload
-(defun avy-thing-copy-paragraph (kill-conditional)
+(defun avy-thing-cut-paragraph ()
+  "Cut current paragraph around the point"
+  (interactive)
+  (save-excursion
+    (funcall-interactively avy-thing-edit-jump-command)
+    (thing-cut-paragraph)))
+
+;;;###autoload
+(defun avy-thing-copy-paragraph (&optional yank-conditional)
   "Copy current paragraph around the point.
 With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'paragraph kill-conditional)))
+    (thing-copy-paragraph nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-paragraph ()
+  "Copy current paragraph around the point.
+With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-paragraph t))
 
 ;;;###autoload
 (defun avy-thing-replace-paragraph ()
@@ -227,15 +307,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'paragraph)))
-
-;;;###autoload
-(defun avy-thing-cut-paragraph (&optional kill-conditional)
-  "Cut current paragraph around the point"
-  (interactive)
-  (save-excursion
-    (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'paragraph t)))
+    (thing-replace-paragraph)))
 
 ;;;###autoload
 (defun avy-thing-cut-defun ()
@@ -243,16 +315,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'defun t)))
+    (thing-cut-defun)))
 
 ;;;###autoload
-(defun avy-thing-copy-defun (kill-conditional)
+(defun avy-thing-copy-defun (&optional yank-conditional)
   "Cut function around point.
  With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'defun kill-conditional)))
+    (thing-copy-defun nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-defun ()
+  "Cut function around point.
+ With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-defun t))
 
 ;;;###autoload
 (defun avy-thing-replace-defun ()
@@ -260,7 +341,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'defun)))
+    (thing-replace-defun)))
 
 ;;;###autoload
 (defun avy-thing-cut-list ()
@@ -268,16 +349,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'list t)))
+    (thing-cut-list)))
 
 ;;;###autoload
-(defun avy-thing-copy-list (kill-conditional)
+(defun avy-thing-copy-list (&optional yank-conditional)
   "Cut list around point.
  With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'list kill-conditional)))
+    (thing-copy-list nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-list ()
+  "Cut list around point.
+ With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-list t))
 
 ;;;###autoload
 (defun avy-thing-replace-list ()
@@ -285,7 +375,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'list)))
+    (thing-replace-list)))
 
 ;;;###autoload
 (defun avy-thing-cut-sentence ()
@@ -293,16 +383,25 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'sentence t)))
+    (thing-cut-sentence)))
 
 ;;;###autoload
-(defun avy-thing-copy-sentence (kill-conditional)
+(defun avy-thing-copy-sentence (&optional yank-conditional)
   "Cut sentence around point.
  With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'sentence kill-conditional)))
+    (thing-copy-sentence nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-sentence ()
+  "Cut sentence around point.
+ With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-sentence t))
 
 ;;;###autoload
 (defun avy-thing-replace-sentence ()
@@ -310,7 +409,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'sentence)))
+    (thing-replace-sentence)))
 
 ;;;###autoload
 (defun avy-thing-cut-whitespace ()
@@ -318,16 +417,18 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'whitespace t)))
+    (thing-cut-whitespace)))
 
 ;;;###autoload
-(defun avy-thing-copy-whitespace (kill-conditional)
+(defun avy-thing-copy-whitespace (&optional yank-conditional)
   "Cut whitespace around point.
  With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'whitespace kill-conditional)))
+    (thing-copy-whitespace nil))
+  (if yank-conditional
+    (yank)))
 
 ;;;###autoload
 (defun avy-thing-replace-whitespace ()
@@ -335,7 +436,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-replace 'whitespace)))
+    (thing-replace-whitespace)))
 
 ;;;###autoload
 (defun avy-thing-cut-page ()
@@ -343,16 +444,18 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'page t)))
+    (thing-cut-page)))
 
 ;;;###autoload
-(defun avy-thing-copy-page (kill-conditional)
+(defun avy-thing-copy-page (&optional yank-conditional)
   "Cut page around point.
  With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit 'page kill-conditional)))
+    (thing-copy-page nil))
+  (if yank-conditional
+    (yank)))
 
 ;;;###autoload
 (defun avy-thing-replace-page ()
@@ -370,19 +473,17 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-copy-to-line-end t)))
+    (thing-cut-to-line-end)))
 
 ;;;###autoload
-(defun avy-thing-copy-to-line-end (&optional kill-conditional)
+(defun avy-thing-copy-to-line-end ()
   "Copy content from current point to line end.
 If `KILL-CONDITIONAL' is non-nil, kill object,
 otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit-internal (point)
-                         (line-end-position)
-                         kill-conditional)))
+    (thing-copy-to-line-end nil)))
 
 ;;;###autoload
 (defun avy-thing-cut-to-line-beginning ()
@@ -390,7 +491,7 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-copy-to-line-beginning t)))
+    (thing-cut-to-line-beginning)))
 
 ;;;###autoload
 (defun avy-thing-copy-to-line-beginning (&optional kill-conditional)
@@ -400,9 +501,7 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-edit-internal (line-beginning-position)
-                         (point)
-                         kill-conditional)))
+    (thing-copy-to-line-beginning nil)))
 
 ;;;###autoload
 (defun avy-thing-cut-comment ()
@@ -411,10 +510,10 @@ If mark is active, it can cut all comment that in mark."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-copy-comment t)))
+    (thing-cut-comment)))
 
 ;;;###autoload
-(defun avy-thing-copy-comment (&optional kill-conditional)
+(defun avy-thing-copy-comment (&optional yank-conditional)
   "Copy the comment around line.
 If mark is active, it can copy all comment that in mark.
 If `KILL-CONDITIONAL' is non-nil, kill object,
@@ -422,21 +521,9 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (let ((beg (line-beginning-position))
-          (end (line-end-position)))
-      (when mark-active
-        (setq beg (region-beginning))
-        (setq end (region-end))
-        (deactivate-mark))
-      (save-excursion
-        (setq end (copy-marker end))
-        (goto-char beg)
-        (while (< (point) end)
-          (if (comment-search-forward end t)
-              (if kill-conditional
-                  (call-interactively 'comment-kill)
-                (call-interactively 'thing-comment-copy))
-            (goto-char end)))))))
+    (thing-copy-comment nil))
+  (if yank-conditional
+    (yank)))
 
 ;;;###autoload
 (defun avy-thing-cut-number ()
@@ -444,20 +531,25 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-copy-number t)))
+    (thing-cut-number)))
 
 ;;;###autoload
-(defun avy-thing-copy-number (kill-conditional)
+(defun avy-thing-copy-number (&optional yank-conditional)
   "Copy number at point.
 With the universal argument, the text will also be killed"
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (when (thing-at-point-looking-at "-?[0-9]+\\.?[0-9]*" 500)
-      (thing-edit-internal
-       (match-beginning 0)
-       (match-end 0)
-       kill-conditional))))
+    (thing-copy-number nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-number ()
+  "Copy number at point.
+With the universal argument, the text will also be killed"
+  (interactive)
+  (avy-thing-copy-number t))
 
 ;;;###autoload
 (defun avy-thing-replace-number ()
@@ -465,10 +557,7 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (when (thing-at-point-looking-at "-?[0-9]+\\.?[0-9]*" 500)
-      (thing-replace-internal
-       (match-beginning 0)
-       (match-end 0)))))
+    (thing-replace-number)))
 
 ;;;###autoload
 (defun avy-thing-cut-parentheses ()
@@ -476,31 +565,27 @@ With the universal argument, the text will also be killed"
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-copy-parentheses t)))
+    (thing-cut-parentheses)))
 
 ;;;###autoload
-(defun avy-thing-copy-parentheses (kill-conditional)
+(defun avy-thing-copy-parentheses (&optional yank-conditional)
   "Copy content in match parentheses.
 If `KILL-CONDITIONAL' is non-nil, kill object,
 otherwise copy object."
   (interactive "P")
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (if (thing-edit-in-string-p)
-        (thing-edit-internal
-         (1+ (car (thing-edit-string-start+end-points)))
-         (cdr (thing-edit-string-start+end-points))
-         kill-conditional)
-      (thing-edit-internal
-       (progn
-         (backward-up-list)
-         (forward-char +1)
-         (point))
-       (progn
-         (up-list)
-         (forward-char -1)
-         (point))
-       kill-conditional))))
+    (thing-copy-parentheses nil))
+  (if yank-conditional
+    (yank)))
+
+;;;###autoload
+(defun avy-thing-copy-and-yank-parentheses ()
+  "Copy content in match parentheses.
+If `KILL-CONDITIONAL' is non-nil, kill object,
+otherwise copy object."
+  (interactive)
+  (avy-thing-copy-parentheses t))
 
 ;;;###autoload
 (defun avy-thing-replace-parentheses ()
@@ -508,19 +593,7 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (if (thing-edit-in-string-p)
-        (thing-replace-internal
-         (1+ (car (thing-edit-string-start+end-points)))
-         (cdr (thing-edit-string-start+end-points)))
-      (thing-replace-internal
-       (progn
-         (backward-up-list)
-         (forward-char +1)
-         (point))
-       (progn
-         (up-list)
-         (forward-char -1)
-         (point))))))
+    (thing-replace-parentheses)))
 
 ;;;###autoload
 (defun avy-thing-copy-region-or-line (&optional kill-conditional)
@@ -530,12 +603,7 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (let* ((active (region-active-p))
-           (pos (or (and active (region-beginning))
-                    (line-beginning-position)))
-           (pos-end (or (and active (region-end))
-                        (line-end-position))))
-      (thing-edit-internal pos pos-end kill-conditional))))
+    (thing-copy-region-or-line nil)))
 
 ;;;###autoload
 (defun avy-thing-cut-region-or-line ()
@@ -543,7 +611,7 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (thing-copy-region-or-line t)))
+    (thing-cut-region-or-line)))
 
 ;;;###autoload
 (defun avy-thing-replace-region-or-line ()
@@ -551,12 +619,7 @@ otherwise copy object."
   (interactive)
   (save-excursion
     (funcall-interactively avy-thing-edit-jump-command)
-    (let* ((active (region-active-p))
-           (pos (or (and active (region-beginning))
-                    (line-beginning-position)))
-           (pos-end (or (and active (region-end))
-                        (line-end-position))))
-      (thing-replace-internal pos pos-end))))
+    (thing-replace-region-or-line)))
 
 (provide 'avy-thing-edit)
 ;;; avy-thing-edit.el ends here
