@@ -265,7 +265,7 @@ With the universal argument, the text will also be killed"
   "Copy current line into Kill-Ring without mark the line.
  With the universal argument, the text will also be killed"
   (interactive)
-  (avy-copy-line t))
+  (avy-thing-copy-line t))
 
 ;;;###autoload
 (defun avy-thing-replace-line ()
