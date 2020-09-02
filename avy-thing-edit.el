@@ -470,6 +470,7 @@ With the universal argument, the text will also be killed"
        (match-beginning 0)
        (match-end 0)))))
 
+;;;###autoload
 (defun avy-thing-cut-parentheses ()
   "Cut content in match parentheses."
   (interactive)
@@ -477,6 +478,7 @@ With the universal argument, the text will also be killed"
     (funcall-interactively avy-thing-edit-jump-command)
     (thing-copy-parentheses t)))
 
+;;;###autoload
 (defun avy-thing-copy-parentheses (kill-conditional)
   "Copy content in match parentheses.
 If `KILL-CONDITIONAL' is non-nil, kill object,
@@ -500,6 +502,7 @@ otherwise copy object."
          (point))
        kill-conditional))))
 
+;;;###autoload
 (defun avy-thing-replace-parentheses ()
   "Replace content in match parentheses with the content of currnt line."
   (interactive)
@@ -519,6 +522,7 @@ otherwise copy object."
          (forward-char -1)
          (point))))))
 
+;;;###autoload
 (defun avy-thing-copy-region-or-line (&optional kill-conditional)
   "Copy content of the current region or line.
 If `KILL-CONDITIONAL' is non-nil, kill object,
@@ -533,6 +537,7 @@ otherwise copy object."
                         (line-end-position))))
       (thing-edit-internal pos pos-end kill-conditional))))
 
+;;;###autoload
 (defun avy-thing-cut-region-or-line ()
   "Cut content of the current region or line."
   (interactive)
@@ -540,6 +545,7 @@ otherwise copy object."
     (funcall-interactively avy-thing-edit-jump-command)
     (thing-copy-region-or-line t)))
 
+;;;###autoload
 (defun avy-thing-replace-region-or-line ()
   "Replace the current region or line with the content."
   (interactive)
